@@ -3,7 +3,8 @@ import VueRouter from 'vue-router'
 import BootstrapVue from 'bootstrap-vue'
 
 //vue 컴포넌트 임포트
-import App from './App.vue'
+//메인화면을 바로 home으로 보내줌.
+//import App from './App.vue'
 import Home from '@/views/Home.vue'
 
 Vue.config.productionTip = false
@@ -24,6 +25,6 @@ const router = new VueRouter({
 
 new Vue({
   router: router,
-  render: h => h(App),
+  render: h => h(Home),
 }).$mount('#app')
 
