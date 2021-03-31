@@ -27,7 +27,7 @@ import com.zaxxer.hikari.HikariDataSource;
  */
 @Configuration
 @PropertySource("classpath:/application.properties")
-@MapperScan(basePackages = { "com.model.*" })
+@MapperScan(basePackages = { "com.race.*" })
 public class DatabaseConfiguration {
 	@Autowired
 	private ApplicationContext applicationContext;
@@ -45,16 +45,16 @@ public class DatabaseConfiguration {
 		return dataSource;
 	}
 
-//	@Bean
-//	public SqlSessionFactory sqlSessionFactory(DataSource dataSource) throws Exception {
-//		SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
-//		sqlSessionFactoryBean.setDataSource(dataSource);
-//		sqlSessionFactoryBean.setMapperLocations(applicationContext.getResources("classpath:/mybatis/*.xml"));
-//		return sqlSessionFactoryBean.getObject();
-//	}
-//
-//	@Bean
-//	public SqlSessionTemplate sqlSessionTemplate(SqlSessionFactory sqlSessionFactory) {
-//		return new SqlSessionTemplate(sqlSessionFactory);
-//	}
+	@Bean
+	public SqlSessionFactory sqlSessionFactory(DataSource dataSource) throws Exception {
+		SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
+		sqlSessionFactoryBean.setDataSource(dataSource);
+		sqlSessionFactoryBean.setMapperLocations(applicationContext.getResources("classpath:/mybatis/*.xml"));
+		return sqlSessionFactoryBean.getObject();
+	}
+
+	@Bean
+	public SqlSessionTemplate sqlSessionTemplate(SqlSessionFactory sqlSessionFactory) {
+		return new SqlSessionTemplate(sqlSessionFactory);
+	}
 }

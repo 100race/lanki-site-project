@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+ 
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.race.sitegrp.SitegrpMapper">
+  <insert id="create" parameterType="com.race.sitegrp.SitegrpVO">
+    INSERT INTO sitegrp(sitegrpno, seqno, wname, wdate, title, grpcont, thumbname, 
+    thumbsize, viewcnt, likecnt, sitecnt)
+    VALUES(sitegrp_seq.nextval, #{seqno}, #{wname}, sysdate, #{title},
+     #{grpcont}, #{thumbname}, #{thumbsize}, #{viewcnt}, #{likecnt}, #{sitecnt})
+  </insert>
+ 
+  <!-- 출력 순서 오름차순 전체 목록 -->
+  <select id="list_seqno_asc" resultType="com.race.sitegrp.SitegrpVO">
+    SELECT  sitegrpno, seqno, wname, wdate, title, grpcont, thumbname, thumbsize,
+     viewcnt, likecnt, sitecnt
+    FROM sitegrp
+    ORDER BY seqno ASC
+  </select>
+</mapper>
