@@ -9,7 +9,7 @@ public class SiteVO {
 	private int siteno          ;
 	private int sitegrpno       ;
 	private int seqno           ;
-	private String link         ;
+	private String siteurl      ;
 	private String sname        ;
 	private String wname        ;
 	private String content      ;

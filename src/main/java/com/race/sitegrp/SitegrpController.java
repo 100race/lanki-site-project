@@ -16,12 +16,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 
 @RestController
-//@RequestMapping("/test")
+//@RequestMapping("/api")
 public class SitegrpController {
-	
-//	@Autowired
-//	@Qualifier("com.race.site.siteServiceImpl")
-//	private CateService service;
 
 	@Autowired
 	@Qualifier("com.race.sitegrp.SitegrpServiceImpl")

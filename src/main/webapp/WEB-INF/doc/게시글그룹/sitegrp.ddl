@@ -39,13 +39,19 @@ CREATE SEQUENCE sitegrp_seq
   
 ----------------------
  -- insert
-INSERT INTO categrp(categrpno, name, seqno, visible, rdate)
-VALUES(categrp_seq.nextval, '국내 여행', 1, 'Y', sysdate);
-INSERT INTO categrp(categrpno, name, seqno, visible, rdate)
-VALUES(categrp_seq.nextval, '해외 여행', 2, 'Y', sysdate);
-INSERT INTO categrp(categrpno, name, seqno, visible, rdate)
-VALUES(categrp_seq.nextval, '개발 자료', 3, 'Y', sysdate);
+INSERT INTO sitegrp(sitegrpno, seqno, wname, wdate, title, grpcont, thumbname, 
+    thumbsize, viewcnt, likecnt, sitecnt)
+    VALUES(sitegrp_seq.nextval, 1, 'aaa', sysdate, '첫게시글 top10',
+     '첫게시글테스트', 'lankisite.png', 0 ,0, 0, 0);
+INSERT INTO sitegrp(sitegrpno, seqno, wname, wdate, title, grpcont, thumbname, 
+    thumbsize, viewcnt, likecnt, sitecnt)
+    VALUES(sitegrp_seq.nextval, 2, 'bbb', sysdate, '두번째게시글 top10',
+     '두번째게시글테스트', 'iconmonster_icon.png', 0 ,0, 0, 0);
 COMMIT;
+
+commit;
+delete from sitegrp where seqno in (1,2);
+commit;
 
 INSERT INTO sitegrp(sitegrpno, seqno, wname, wdate, title, grpcont, thumbname, thumbsize, viewcnt, likecnt, sitecnt)
     VALUES(sitegrp_seq.nextval, #{seqno}, #{wname}, sysdate, #{title}, #{grpcont}, #{thumbname}, #{thumbsize}, #{viewcnt}, #{likecnt}, #{sitecnt})

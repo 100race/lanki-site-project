@@ -5,5 +5,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.race.site.SiteMapper">
-
+	<insert id="create" parameterType="com.race.site.SiteVO">
+    INSERT INTO site(siteno, seqno, siteurl, sname, wname, content, filename, filesize, likecnt, sitegrpno)
+    VALUES(sitegrp_seq.nextval, #{seqno}, #{siteurl}, #{sname}, #{wname}, #{content}, #{filename}, #{filesize}, #{likecnt}, #{sitegrpno})
+  </insert>
+ 
+  <!-- 출력 순서 오름차순 특정사이트그룹 목록 -->
+  <select id="list_seqno_asc" parameterType="int" resultType="com.race.site.SiteVO">
+    SELECT  siteno, seqno, siteurl, sname, wname, content, filename, filesize, likecnt, sitegrpno
+    FROM site
+    WHERE sitegrpno = #{sitegrpno}
+    ORDER BY seqno ASC
+  </select>
 </mapper>

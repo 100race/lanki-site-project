@@ -5,10 +5,10 @@
 CREATE TABLE site(
 		siteno                        		NUMBER(20)		 NOT NULL		 PRIMARY KEY,
 		seqno                         		NUMBER(10)		 DEFAULT 0		 NOT NULL,
-		link                          		VARCHAR2(1000)		 NULL ,
+		siteurl                          		VARCHAR2(1000)		 NULL ,
 		sname                         		VARCHAR2(500)		 NOT NULL,
 		wname                         		VARCHAR2(100)		 NOT NULL,
-		content                       		CLOB(10)		 NULL ,
+		content                       		CLOB		 NULL ,
 		filename                      		VARCHAR2(100)		 NULL ,
 		filesize                      		NUMBER(10)		 DEFAULT 0		 NOT NULL,
 		likecnt                       		NUMBER(10)		 DEFAULT 0		 NOT NULL,
@@ -19,7 +19,7 @@ CREATE TABLE site(
 COMMENT ON TABLE site is '사이트';
 COMMENT ON COLUMN site.siteno is '사이트번호';
 COMMENT ON COLUMN site.seqno is '출력순서';
-COMMENT ON COLUMN site.link is '링크';
+COMMENT ON COLUMN site.siteurl is '링크';
 COMMENT ON COLUMN site.sname is '사이트명';
 COMMENT ON COLUMN site.wname is '게시자';
 COMMENT ON COLUMN site.content is '사이트설명';
@@ -137,22 +137,27 @@ SET    cnt = 0;
  
 COMMIT;
 
-INSERT INTO sitegrp(sitegrpno, seqno, wname, wdate, title, grpcont, thumbname, 
-    thumbsize, viewcnt, likecnt, sitecnt)
-    VALUES(sitegrp_seq.nextval, 1, 'aaa', sysdate, '첫게시글 top10',
-     '첫게시글테스트', 'lankisite.png', 0 ,0, 0, 0);
-INSERT INTO sitegrp(sitegrpno, seqno, wname, wdate, title, grpcont, thumbname, 
-    thumbsize, viewcnt, likecnt, sitecnt)
-    VALUES(sitegrp_seq.nextval, 2, 'bbb', sysdate, '두번째게시글 top10',
-     '두번째게시글테스트', 'lankisite.png', 0 ,0, 0, 0);
-     
-commit;
-delete from sitegrp where seqno in (1,2);
-commit;
-
-
-
 select * from sitegrp;
 
+---insert
+INSERT INTO site(siteno, seqno, siteurl, sname, wname, content, filename, filesize,
+likecnt, sitegrpno)
+    VALUES(sitegrp_seq.nextval, 1, 'https://blog.naver.com/100race', '내블로그1', 'aaa', '내 네이버블로그이다', 
+    'myblog.png', 0, 0, 6);
+INSERT INTO site(siteno, seqno, siteurl, sname, wname, content, filename, filesize,
+likecnt, sitegrpno)
+    VALUES(sitegrp_seq.nextval, 2, 'https://blog.naver.com/100race', '내블로그2', 'aaa', '내 네이버블로그이다', 
+    'myblog.png', 0, 0, 6);
+    INSERT INTO site(siteno, seqno, siteurl, sname, wname, content, filename, filesize,
+likecnt, sitegrpno)
+    VALUES(sitegrp_seq.nextval, 3, 'https://blog.naver.com/100race', '내블로그3', 'aaa', '내 네이버블로그이다', 
+    'myblog.png', 0, 0, 6);
+commit;
+
+--select
+ SELECT  siteno, seqno, siteurl, sname, wname, content, filename, filesize, likecnt, sitegrpno
+    FROM site
+    WHERE sitegrpno = 6
+    ORDER BY seqno ASC;
 
   
