@@ -23,26 +23,24 @@
         <div class="container">
           
           <div class="row">
-
             <!---->
               <p v-if="sitegrps == null || sitegrps.length == 0">게시글이 없습니다!</p>
 
                  <div v-for="sitegrp of sitegrps" :key="sitegrp.seqno" class="col-md-4">
                   <div class="card mb-4 box-shadow">
-                    <img class="card-img-top" :src="require('@/assets/siteThumbnail/'+sitegrp.thumbname)" alt="image loading failed">
+                    <img class="card-img-top" :src="require('../assets/siteThumbnail/'+sitegrp.thumbname)" alt="image loading failed">
                       <div class="card-body">
                        <p class="card-text">{{sitegrp.title}}</p>
                         <div class="d-flex justify-content-between align-items-center">
                          <div class="btn-group">
-                          <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                          <button type="button" @click="onClickView(sitegrp.sitegrpno)" class="btn btn-sm btn-outline-secondary">View</button>
                           <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
                          </div>
                         <small class="text-muted">1 mins</small>
                         </div>
                     </div>
                   </div>
-                
-              </div>
+                </div>
             
           </div>
         </div>
@@ -73,6 +71,16 @@ export default {
      .catch(e=>{
        console.log('error:',e) //에러가 나는 경우 콘솔에 에러를 출력
      })
+  },
+
+  methods: {
+    onClickView: function(sitegrpno){
+      // alert(sitegrpno)
+      this.$router.push({ name: 'Read', query: {sitegrpno : sitegrpno}}) // name은 라우터에서 설정해준 이름. query로 데이터 전달
+      // this.$router.push({ name: 'Read', params: {sitegrpno : sitegrpno}}) // param으로 데이터 전달
+    }
   }
+
+
 }
 </script>
