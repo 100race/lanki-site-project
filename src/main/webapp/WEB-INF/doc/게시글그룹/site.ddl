@@ -140,9 +140,17 @@ COMMIT;
 INSERT INTO sitegrp(sitegrpno, seqno, wname, wdate, title, grpcont, thumbname, 
     thumbsize, viewcnt, likecnt, sitecnt)
     VALUES(sitegrp_seq.nextval, 1, 'aaa', sysdate, '첫게시글 top10',
-     '첫게시글테스트', 'lankisite', 0 ,0, 0, 0);
+     '첫게시글테스트', 'lankisite.png', 0 ,0, 0, 0);
+INSERT INTO sitegrp(sitegrpno, seqno, wname, wdate, title, grpcont, thumbname, 
+    thumbsize, viewcnt, likecnt, sitecnt)
+    VALUES(sitegrp_seq.nextval, 2, 'bbb', sysdate, '두번째게시글 top10',
+     '두번째게시글테스트', 'lankisite.png', 0 ,0, 0, 0);
      
 commit;
+delete from sitegrp where seqno in (1,2);
+commit;
+
+
 
 select * from sitegrp;
 

@@ -21,150 +21,58 @@
 
       <div class="album py-5 bg-light">
         <div class="container">
-
+          
           <div class="row">
-            <div class="col-md-4">
-              <div class="card mb-4 box-shadow">
-                <img class="card-img-top" src="../assets/siteThumbnail/flaticon_icon.png" alt="image loading failed">
-                <div class="card-body">
-                  <p class="card-text">무료아이콘사이트 top5</p>
-                  <div class="d-flex justify-content-between align-items-center">
-                    <div class="btn-group">
-                      <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                      <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                    </div>
-                    <small class="text-muted">1 mins</small>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-4">
-              <div class="card mb-4 box-shadow">
-                <img class="card-img-top" src="../assets/siteThumbnail/iconfinder_icon.png" alt="image loading failed">
-                <div class="card-body">
-                  <p class="card-text">디자이너에게 유용한 사이트 top10.</p>
-                  <div class="d-flex justify-content-between align-items-center">
-                    <div class="btn-group">
-                      <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                      <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                    </div>
-                    <small class="text-muted">2 mins</small>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-4">
-              <div class="card mb-4 box-shadow">
-                <img class="card-img-top" src="../assets/siteThumbnail/iconmonster_icon.png" alt="image loading failed">
-                <div class="card-body">
-                  <p class="card-text">팀플전용 좋은 사이트 순위 top8</p>
-                  <div class="d-flex justify-content-between align-items-center">
-                    <div class="btn-group">
-                      <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                      <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                    </div>
-                    <small class="text-muted">3 mins</small>
-                  </div>
-                </div>
-              </div>
-            </div>
 
-            <div class="col-md-4">
-              <div class="card mb-4 box-shadow">
-                <img class="card-img-top" src="../assets/siteThumbnail/gmarket_ecommerce.png" alt="image loading failed">
-                <div class="card-body">
-                  <p class="card-text">국내 쇼핑몰 사이트 top10</p>
-                  <div class="d-flex justify-content-between align-items-center">
-                    <div class="btn-group">
-                      <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                      <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                    </div>
-                    <small class="text-muted">9 mins</small>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-4">
-              <div class="card mb-4 box-shadow">
-                <img class="card-img-top" src="../assets/siteThumbnail/metrizeicon_icon.png" alt="image loading failed">
-                <div class="card-body">
-                  <p class="card-text">hiphada님의 개인 사이트 순위모음</p>
-                  <div class="d-flex justify-content-between align-items-center">
-                    <div class="btn-group">
-                      <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                      <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                    </div>
-                    <small class="text-muted">45 mins</small>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-4">
-              <div class="card mb-4 box-shadow">
-                <img class="card-img-top" src="../assets/siteThumbnail/youtube_entertain.png" alt="image loading failed">
-                <div class="card-body">
-                  <p class="card-text">미디어/오락 사이트 순위 top 5</p>
-                  <div class="d-flex justify-content-between align-items-center">
-                    <div class="btn-group">
-                      <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                      <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                    </div>
-                    <small class="text-muted">90 mins</small>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <!---->
+              <p v-if="sitegrps == null || sitegrps.length == 0">게시글이 없습니다!</p>
 
-            <div class="col-md-4">
-              <div class="card mb-4 box-shadow">
-                <img class="card-img-top" src="../assets/siteThumbnail/nexon_game.png" alt="image loading failed">
-                <div class="card-body">
-                  <p class="card-text">국내게임 사이트 순위 top 10</p>
-                  <div class="d-flex justify-content-between align-items-center">
-                    <div class="btn-group">
-                      <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                      <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                 <div v-for="sitegrp of sitegrps" :key="sitegrp.seqno" class="col-md-4">
+                  <div class="card mb-4 box-shadow">
+                    <img class="card-img-top" :src="require('@/assets/siteThumbnail/'+sitegrp.thumbname)" alt="image loading failed">
+                      <div class="card-body">
+                       <p class="card-text">{{sitegrp.title}}</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                         <div class="btn-group">
+                          <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                          <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                         </div>
+                        <small class="text-muted">1 mins</small>
+                        </div>
                     </div>
-                    <small class="text-muted">1 mins</small>
                   </div>
-                </div>
+                
               </div>
-            </div>
-            <div class="col-md-4">
-              <div class="card mb-4 box-shadow">
-                <img class="card-img-top" src="../assets/siteThumbnail/collectui_ui.png" alt="image loading failed">
-                <div class="card-body">
-                  <p class="card-text">UI 디자인 참고사이트 모음</p>
-                  <div class="d-flex justify-content-between align-items-center">
-                    <div class="btn-group">
-                      <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                      <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                    </div>
-                    <small class="text-muted">9 mins</small>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-4">
-              <div class="card mb-4 box-shadow">
-                <img class="card-img-top" src="../assets/siteThumbnail/icooonmono_icon.png" alt="image loading failed">
-                <div class="card-body">
-                  <p class="card-text">고퀄리티 사진 모음 사이트 순위 top5</p>
-                  <div class="d-flex justify-content-between align-items-center">
-                    <div class="btn-group">
-                      <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                      <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                    </div>
-                    <small class="text-muted">5 mins</small>
-                  </div>
-                </div>
-              </div>
-            </div>
+            
           </div>
         </div>
       </div>
 
     </main>
 
-    
+  </div> 
 </template>
+
+<script>
+import axios from 'axios' //API 호출을 위한 패키지
+//api를 받아서 데이터가 있으면 template에 뿌려주는식으로 가야할듯
+
+export default {
+  name: 'list',
+  data:() =>{
+    return{
+      sitegrps: [] //sitegrps를 빈 리스트로 초기화
+    }
+  },
+
+  created(){ //초기화 함수를 정의
+    axios.get('http://127.0.0.1:8000/') //localhost:8000에 get call을 한다
+     .then(response=>{
+       this.sitegrps = response.data.map(r=>r.data) //반환되는 값을 sitegrps에 저장한다
+     })
+     .catch(e=>{
+       console.log('error:',e) //에러가 나는 경우 콘솔에 에러를 출력
+     })
+  }
+}
+</script>
