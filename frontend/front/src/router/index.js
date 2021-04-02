@@ -9,6 +9,7 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 // 메인화면을 바로 home으로 보내줌.
 import Home from '@/views/Home.vue'
 import Read from '@/views/Read.vue'
+import Create from '@/views/Create.vue'
 
 Vue.config.productionTip = false
 Vue.use(BootstrapVue)
@@ -24,8 +25,13 @@ const router = new VueRouter({
     {
       path: '/read', // 'sitegrpno'가 매개변수에 들어있을경우'/read/:id'
       name: 'Read',
-      component: Read,
+      component: Read
+    },
+    { path: '/create',
+      name: 'Create',
+      component: Create
     }
+
   ]
 })
 

@@ -19,4 +19,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     FROM sitegrp
     ORDER BY seqno ASC
   </select>
+  
+  <select id="get" parameterType="int" resultType="com.race.sitegrp.SitegrpVO">
+    SELECT  sitegrpno, seqno, wname, wdate, title, grpcont, thumbname, thumbsize,
+     viewcnt, likecnt, sitecnt
+    FROM sitegrp
+    WHERE sitegrpno = #{sitegrpno}
+  </select>
 </mapper>

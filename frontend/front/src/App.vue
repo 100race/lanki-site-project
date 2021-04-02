@@ -26,7 +26,7 @@
       </div>
       <div class="navbar navbar-dark bg-dark box-shadow">
         <div class="container d-flex justify-content-between">
-          <a href="#" class="navbar-brand d-flex align-items-center">
+          <a href="#/" class="navbar-brand d-flex align-items-center">
             <strong>Lanki</strong>
           </a>
           <router-link class="nav-item nav-link" to="/create">새글쓰기</router-link>

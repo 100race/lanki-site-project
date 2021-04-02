@@ -16,7 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 
 @RestController
-//@RequestMapping("/api")
+@RequestMapping("/api/sitegrp")
 public class SitegrpController {
 
 	@Autowired
@@ -29,7 +29,7 @@ public class SitegrpController {
 	
 
 	//홈화면에 데이터불러온다
-	@RequestMapping(value = "/", method = RequestMethod.GET)
+	@RequestMapping(value = "/getlist", method = RequestMethod.GET)
 	public @ResponseBody List<SitegrpResponse> getlist(){
 		
 		List<String> errors = new ArrayList<>();
@@ -55,6 +55,30 @@ public class SitegrpController {
 
 		return sitegrpResponses;
 	}
+	
+		//sitegrpno로 하나의 sitegrpno 가져옴
+		@RequestMapping(value = "/get", method = RequestMethod.GET)
+		public @ResponseBody SitegrpResponse get(@RequestParam(value="sitegrpno", defaultValue="0") int sitegrpno){
+			
+			List<String> errors = new ArrayList<>();
+			
+			SitegrpVO vo = null;
+			
+			SitegrpResponse sitegrpResponse = null;
+			
+			try {
+				
+				vo = gservice.get(sitegrpno);
+
+			}catch(final Exception e) { 
+				
+				errors.add(e.getMessage());
+			}			
+			
+			sitegrpResponse = SitegrpAdapter.sitegrpResponse(vo, errors);
+				
+			return sitegrpResponse;
+		}
 	
 	
 	//새 사이트그룹을 만들다

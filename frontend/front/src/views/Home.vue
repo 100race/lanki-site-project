@@ -64,7 +64,7 @@ export default {
   },
 
   created(){ //초기화 함수를 정의
-    axios.get('http://127.0.0.1:8000/') //localhost:8000에 get call을 한다
+    axios.get('http://127.0.0.1:8000/api/sitegrp/getlist') //localhost:8000에 get call을 한다
      .then(response=>{
        this.sitegrps = response.data.map(r=>r.data) //반환되는 값을 sitegrps에 저장한다
      })

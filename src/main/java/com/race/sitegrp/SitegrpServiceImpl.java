@@ -21,4 +21,9 @@ public class SitegrpServiceImpl implements SitegrpService {
 		return mapper.create(vo);
 	}
 
+	@Override
+	public SitegrpVO get(int sitegrpno) {
+		return mapper.get(sitegrpno);
+	}
+
 }

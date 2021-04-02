@@ -19,7 +19,7 @@
                 </div>
 
   <p>{{ $route.query.sitegrpno }}</p>
-  <p>{{ sites }}</p>
+  <p>{{ sitegrp }}</p>
   </div>
   
 </template>
@@ -32,7 +32,8 @@ export default {
   name: 'slist',
   data:() =>{
     return{
-      sites: [] // sites를 빈 리스트로 초기화
+      sites: [], // sites를 빈 리스트로 초기화
+      sitegrp: [] 
     }
   },
 
@@ -40,9 +41,17 @@ export default {
     // body={ //데이터전송
     //   sitegrpno: this.$route.query.sitegrpno
     // }
-    axios.get('http://127.0.0.1:8000/read',{params:{sitegrpno: this.$route.query.sitegrpno}}) //localhost:8000에 get call을 한다
+    axios.get('http://127.0.0.1:8000/api/site/read',{params:{sitegrpno: this.$route.query.sitegrpno}}) //localhost:8000에 get call을 한다
      .then(response=>{
        this.sites = response.data.map(r=>r.data) //반환되는 값을 sitegrps에 저장한다 보내주는 값에 data,error이 있어 r.data만 뽑아오도록 map써준
+     })
+     .catch(e=>{
+       console.log('error:',e) //에러가 나는 경우 콘솔에 에러를 출력
+     })
+    
+    axios.get('http://127.0.0.1:8000/api/sitegrp/get',{params:{sitegrpno: this.$route.query.sitegrpno}}) //localhost:8000에 get call을 한다
+     .then(response=>{
+       this.sitegrp = response.data.data //response의 data에서 data(error빼고)만 호출(sitegrpResponse구조 확인 : data,error)
      })
      .catch(e=>{
        console.log('error:',e) //에러가 나는 경우 콘솔에 에러를 출력
