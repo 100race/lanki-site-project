@@ -55,6 +55,8 @@
 import axios from 'axios' //API 호출을 위한 패키지
 //api를 받아서 데이터가 있으면 template에 뿌려주는식으로 가야할듯
 
+let SITE_API_URL = 'http://127.0.0.1:8000/api'
+
 export default {
   name: 'list',
   data:() =>{
@@ -62,25 +64,27 @@ export default {
       sitegrps: [] //sitegrps를 빈 리스트로 초기화
     }
   },
-
-  created(){ //초기화 함수를 정의
-    axios.get('http://127.0.0.1:8000/api/sitegrp/getlist') //localhost:8000에 get call을 한다
+  methods: {
+    initSitegrps: function(){
+      axios.get(SITE_API_URL+'/sitegrp/getlist') //localhost:8000에 get call을 한다
      .then(response=>{
        this.sitegrps = response.data.map(r=>r.data) //반환되는 값을 sitegrps에 저장한다
      })
      .catch(e=>{
        console.log('error:',e) //에러가 나는 경우 콘솔에 에러를 출력
      })
-  },
+    },
 
-  methods: {
     onClickView: function(sitegrpno){
       // alert(sitegrpno)
       this.$router.push({ name: 'Read', query: {sitegrpno : sitegrpno}}) // name은 라우터에서 설정해준 이름. query로 데이터 전달
       // this.$router.push({ name: 'Read', params: {sitegrpno : sitegrpno}}) // param으로 데이터 전달
     }
-  }
+  },
 
+  created(){ //초기화 함수를 정의
+    this.initSitegrps();
+  }
 
 }
 </script>

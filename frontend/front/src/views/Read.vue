@@ -28,35 +28,44 @@
 <script>
 import axios from 'axios' 
 
+let SITE_API_URL = 'http://127.0.0.1:8000/api'
+
 export default {
   name: 'slist',
   data:() =>{
     return{
-      sites: [], // sites를 빈 리스트로 초기화
+      sites: [],
       sitegrp: [] 
     }
   },
 
-  created(){ //초기화 함수를 정의 created
-    // body={ //데이터전송
-    //   sitegrpno: this.$route.query.sitegrpno
-    // }
-    axios.get('http://127.0.0.1:8000/api/site/read',{params:{sitegrpno: this.$route.query.sitegrpno}}) //localhost:8000에 get call을 한다
+  methods: {
+    initSites: function(){
+      axios.get(SITE_API_URL+'/site/read',{params:{sitegrpno: this.$route.query.sitegrpno}}) //localhost:8000에 get call을 한다
      .then(response=>{
        this.sites = response.data.map(r=>r.data) //반환되는 값을 sitegrps에 저장한다 보내주는 값에 data,error이 있어 r.data만 뽑아오도록 map써준
      })
      .catch(e=>{
-       console.log('error:',e) //에러가 나는 경우 콘솔에 에러를 출력
+       console.log('error:',e) 
      })
-    
-    axios.get('http://127.0.0.1:8000/api/sitegrp/get',{params:{sitegrpno: this.$route.query.sitegrpno}}) //localhost:8000에 get call을 한다
+    },
+
+    initSitegrp: function(){
+      axios.get(SITE_API_URL+'/sitegrp/get',{params:{sitegrpno: this.$route.query.sitegrpno}}) 
      .then(response=>{
        this.sitegrp = response.data.data //response의 data에서 data(error빼고)만 호출(sitegrpResponse구조 확인 : data,error)
      })
      .catch(e=>{
-       console.log('error:',e) //에러가 나는 경우 콘솔에 에러를 출력
+       console.log('error:',e)
      })
+    }
+
   },
+
+  created(){ 
+     this.initSites()
+     this.initSitegrp()
+  }
 
   
 }
