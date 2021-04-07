@@ -6,7 +6,7 @@
   <div class="form-group">
     <label class="control-label col-sm-2" for="title">사이트그룹 제목</label>
     <div class="col-sm-8">
-      <input type="text" name="title" id="title" v-model="sitegrptitle" required = "true" class="form-control">
+      <input type="text" name="title" id="title" v-model="sitegrptitle" plcaeholder="ex)여행갈 때 참고하기 좋은 사이트 TOP 10" required = "true" class="form-control">
     </div>
   </div>
   
@@ -15,7 +15,7 @@
     <div class="col-sm-8">
     <textarea rows="5" cols="7" id="content" v-model="sitegrpcontent" required = "true" name="content" class="form-control"></textarea>
     </div>
-  </div>
+  </div> 
   <hr>
  
 
@@ -26,21 +26,21 @@
     <div class="form-group">
     <label class="control-label col-sm-2" for="title">사이트 Url</label>
     <div class="col-sm-8">
-      <input type="text" name="title" id="title" class="form-control">
+      <input type="text" name="title" id="title" v-model="siteurl[index]" class="form-control">
     </div>
   </div>
 
     <div class="form-group">
     <label class="control-label col-sm-2" for="title">사이트명</label>
     <div class="col-sm-8">
-      <input type="text" name="title" id="title" v-model="siteinputs[index]" class="form-control">
+      <input type="text" name="title" id="title" v-model="sitetitle[index]" class="form-control">
     </div>
   </div>
   
   <div class="form-group">
     <label class="control-label col-sm-2" for="content">사이트설명</label>
     <div class="col-sm-8">
-    <textarea rows="5" cols="7" id="content" name="content" class="form-control"></textarea>
+    <textarea rows="5" cols="7" id="content" name="content" v-model="sitecontent[index]" class="form-control"></textarea>
     </div>
   </div>
  
@@ -50,12 +50,14 @@
       <input type="file" name="filenameMF" id="filenameMF" class="form-control">
     </div>
   </div>
-   <button class="add" @click="delInput(siteinput)">사이트 제거</button>
+   <button class="add" @click="delInput(siteinput,index)">사이트 제거</button>
   <hr>
   </div>
   <p>
-    First value: {{ siteinputs[0] }}<br />
-    Second value: {{ siteinputs[1] }}
+    First value: {{ sitetitle[0] }}<br />
+    Second value: {{ sitetitle[1] }}
+    Third value title: {{ sitetitle[2] }}
+    Third value Url: {{ siteurl[2] }}
   </p>
 </div>
 
@@ -83,8 +85,14 @@ export default {
     return{
       sites: [],
       sitegrp: [],
+      sitegrpcontent:'',
+      sitegrptitle:'',
       grpinputs:[],
-      siteinputs:[]
+      siteinputs:[],
+
+      siteurl: [],
+      sitetitle:[],
+      sitecontent:[]
     }
   },
 
@@ -104,8 +112,12 @@ export default {
       // filename
     },
 
-    delInput: function(siteinput){ //클릭시 사이트 추가폼 제거 
+    delInput: function(siteinput,index){ //클릭시 사이트 추가폼,데이터 제거 
       this.siteinputs.splice(this.siteinputs.indexOf(siteinput),1);
+      this.siteurl.splice(this.siteurl.indexOf(siteurl),1);
+      this.sitetitle.splice(this.sitetitle.indexOf(sitetitle),1);
+      this.sitecontent.splice(this.sitecontent.indexOf(sitecontent),1);
+      
       //this.siteinputs.$remove(siteinput);
     }
   }
